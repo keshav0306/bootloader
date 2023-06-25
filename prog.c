@@ -1,19 +1,16 @@
-int a = 0xb;
+int a = 7;
 
 int fun(){
-    int b = 8;
     char * addr = 0xb8000;
     *(addr) = 'T';
     *(addr + 1) = a;
-    a++;
-    a %= 15;
-}
-
-int r(){
-    char * addr = 0xb8000;
-    *(addr) = 'Q';
-    *(addr + 1) = 0x06;
-    a++;
-    a %= 15;
+    char b = *(addr);
+    *(addr + 2) = b;
+    *(addr + 3) = ++a;
+    for(;;){
+        *(addr) = 'T';
+        *(addr + 1) = a;
+        addr += 2;
+    }
     asm volatile("hlt");
 }

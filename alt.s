@@ -152,7 +152,7 @@ main:
     mov cr0, eax
     ;call infinity
 
-
+    ; the start address, to be changed here if the kernel is to be loaded at a different address
     jmp 8:0x1000
 
 
